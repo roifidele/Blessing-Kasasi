@@ -1,600 +1,272 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="blessingApp">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Meta SEO -->
-    <title>Blessing Kasasi – Activiste des droits humains en Afrique</title>
-    <meta name="description" content="Blessing Kasasi est une activiste congolaise engagée pour les droits des enfants, des filles et des personnes vivant avec albinisme en Afrique.">
-    <meta name="keywords" content="Blessing Kasasi, droits humains, Congo, RDC, albinisme, droits des enfants, droits des femmes, activiste africaine">
-    <meta name="author" content="Blessing Kasasi">
-    
-    <!-- Favicon institutionnel -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><style>.flame{fill:%23C9A227;}.shield{fill:%230F172A;}</style></defs><rect width=%22100%22 height=%22100%22 fill=%22white%22/><path class=%22shield%22 d=%22M50 15 L85 30 L85 70 L50 85 L15 70 L15 30 Z%22/><path class=%22flame%22 d=%22M50 35 Q55 25 60 35 Q65 45 55 55 Q50 65 45 55 Q35 45 40 35 Q45 25 50 35 Z%22/></svg>">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+klEQVRYhe2XsQ3CMBBE7/4qpAaJARiDERiCMRiCIRiCIVxkjFH+dHFQJZLTOdHJOlmSz6r0PAqgYAFwBLAVjYiqF1s1gE/ACFwZAGe8A8x+LrO4R1BQNX2BY6A8ET4U/kn8zSfQjC8A+6S4REd8JtAWN9uq/8JtcbOt+i/cFjfbqs/F3fE9d5vTXtld3BXfc7c57ZXdxS3g0/bKruL/YvD8d8TNtuq/cFvcbKv+C7fFzbbqZ3F3fM+Z07Os47c49/t8g3+v6q3u99t8AyP/3yem6kfhKl7Fq3gVr+JVvIpX8Spexat4Fa/iVbyKV/EqXsWreBX/j3gzLePEt2C4wI8AAAAASUVORK5CYII=">
-    
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'midnight': '#0F172A',
-                        'gold': '#C9A227',
-                        'dark-red': '#8B0000',
-                        'off-white': '#F8F9FA',
-                        'light-gray': '#E9ECEF'
-                    },
-                    fontFamily: {
-                        'heading': ['Inter', 'system-ui', 'sans-serif'],
-                        'body': ['Merriweather', 'Georgia', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <title>Blessing Kasasi - Activiste des droits humains</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Heroicons via CDN -->
-    <script src="https://unpkg.com/heroicons@latest/"></script>
-    
-    <!-- AngularJS via CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    
-    <style>
-        /* Custom styles for enhanced UX */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
-        }
-        
-        .stat-card {
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-bottom-color: #C9A227;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .quote-decoration {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .quote-decoration::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: linear-gradient(to bottom, #C9A227, #8B0000);
-        }
-        
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles blessing.css">
 </head>
-<body class="bg-off-white text-gray-800 font-body" ng-controller="MainController">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-midnight/95 backdrop-blur-sm z-50 shadow-lg">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center">
-                        <span class="text-midnight font-heading font-bold text-sm">BK</span>
-                    </div>
-                    <span class="text-white font-heading font-bold text-lg">Blessing Kasasi</span>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <span class="fw-bold">Blessing Kasasi</span>
                 </a>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-gold transition-colors">Accueil</a>
-                    <a href="#about" class="text-gray-300 hover:text-gold transition-colors">À propos</a>
-                    <a href="#vision" class="text-gray-300 hover:text-gold transition-colors">Vision</a>
-                    <a href="#impact" class="text-gray-300 hover:text-gold transition-colors">Impact</a>
-                    <a href="#collaborate" class="bg-gold text-midnight px-6 py-2 rounded-full font-heading font-semibold hover:bg-gold/90 transition-colors">
-                        Soutenir
-                    </a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden hidden py-4 border-t border-gray-700">
-                <div class="flex flex-col space-y-4">
-                    <a href="#home" class="text-gray-300 hover:text-gold transition-colors">Accueil</a>
-                    <a href="#about" class="text-gray-300 hover:text-gold transition-colors">À propos</a>
-                    <a href="#vision" class="text-gray-300 hover:text-gold transition-colors">Vision</a>
-                    <a href="#impact" class="text-gray-300 hover:text-gold transition-colors">Impact</a>
-                    <a href="#collaborate" class="bg-gold text-midnight px-6 py-2 rounded-full font-heading font-semibold text-center">
-                        Soutenir
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-gradient text-white pt-24 pb-20 md:pt-32 md:pb-28 fade-in">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <!-- Badge de reconnaissance -->
-                <div class="inline-flex items-center bg-gold/20 text-gold px-4 py-2 rounded-full mb-6">
-                    <span class="font-heading font-semibold text-sm">Voix engagée pour la dignité humaine</span>
-                </div>
-                
-                <!-- Titre principal -->
-                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
-                    Blessing Kasasi
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
-                    Activiste des droits humains, engagée pour les enfants, les filles et les personnes vivant avec albinisme.
-                </p>
-                
-                <!-- Call to Action -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#collaborate" class="bg-gold text-midnight px-8 py-4 rounded-full font-heading font-bold text-lg hover:bg-gold/90 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        Soutenir mon engagement
-                    </a>
-                    <a href="#vision" class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-heading font-bold text-lg hover:border-gold hover:text-gold transition-all">
-                        Découvrir ma vision
-                    </a>
-                </div>
-                
-                <!-- Stats rapides -->
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                        <div class="text-3xl font-bold text-gold mb-2">10+</div>
-                        <div class="text-gray-300">Années d'engagement</div>
-                    </div>
-                    <div class="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                        <div class="text-3xl font-bold text-gold mb-2">50K+</div>
-                        <div class="text-gray-300">Personnes impactées</div>
-                    </div>
-                    <div class="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
-                        <div class="text-3xl font-bold text-gold mb-2">3</div>
-                        <div class="text-gray-300">Causes prioritaires</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- À propos Section -->
-    <section id="about" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="flex items-center mb-12">
-                    <div class="w-12 h-1 bg-gold mr-4"></div>
-                    <h2 class="font-heading font-bold text-3xl md:text-4xl text-midnight">À propos</h2>
-                </div>
-                
-                <div class="bg-light-gray rounded-2xl p-8 md:p-12 shadow-sm">
-                    <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-6">
-                        Femme de sa génération, convaincue et convaincante, Blessing Kasasi incarne un leadership porté par la vision, l'action et l'impact.
-                    </p>
-                    <p class="text-lg md:text-xl leading-relaxed text-gray-700">
-                        Profondément engagée pour l'Afrique et le Congo, elle milite pour la dignité humaine, l'égalité et l'inclusion, convaincue que chaque vie compte et mérite justice et protection.
-                    </p>
-                </div>
-                
-                <!-- Principes fondamentaux -->
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="stat-card bg-white p-8 rounded-xl shadow-md">
-                        <div class="w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center mb-6">
-                            <span class="text-2xl">👧</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-4">Pour les enfants</h3>
-                        <p class="text-gray-600">Défense du droit à l'éducation, protection contre les violences, et promotion de l'épanouissement.</p>
-                    </div>
-                    
-                    <div class="stat-card bg-white p-8 rounded-xl shadow-md">
-                        <div class="w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center mb-6">
-                            <span class="text-2xl">👩</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-4">Pour les filles</h3>
-                        <p class="text-gray-600">Autonomisation, éducation, et lutte contre les discriminations basées sur le genre.</p>
-                    </div>
-                    
-                    <div class="stat-card bg-white p-8 rounded-xl shadow-md">
-                        <div class="w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center mb-6">
-                            <span class="text-2xl">👁️</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-4">Pour les personnes atteintes d'albinisme</h3>
-                        <p class="text-gray-600">Protection, inclusion sociale, et accès aux soins dermatologiques essentiels.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vision & Mission Section -->
-    <section id="vision" class="py-16 md:py-24 bg-midnight text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="flex items-center mb-12">
-                    <div class="w-12 h-1 bg-gold mr-4"></div>
-                    <h2 class="font-heading font-bold text-3xl md:text-4xl">Vision & Mission</h2>
-                </div>
-                
-                <!-- Citation principale -->
-                <div class="quote-decoration mb-12">
-                    <p class="text-2xl md:text-3xl font-bold mb-6">
-                        « Sensibiliser, informer, dénoncer et combattre les injustices n'est pas un choix : c'est ma raison d'être. »
-                    </p>
-                </div>
-                
-                <!-- Citation secondaire -->
-                <div class="bg-white/5 p-8 rounded-2xl mb-12">
-                    <p class="text-xl md:text-2xl italic mb-4">
-                        « Sans vision ni action, les droits humains meurent dans le silence. »
-                    </p>
-                    <p class="text-gray-300">— Blessing Kasasi</p>
-                </div>
-                
-                <!-- Causes prioritaires -->
-                <div class="bg-white/10 p-8 rounded-2xl">
-                    <h3 class="font-heading font-bold text-2xl mb-6 text-gold">Causes prioritaires</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-gold mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-lg">Droits des enfants : protection, éducation, et participation</span>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" @click="smoothScroll">À propos</a>
                         </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-gold mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-lg">Éducation des filles : autonomisation et leadership</span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#causes" @click="smoothScroll">Causes</a>
                         </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-gold mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-lg">Inclusion et protection des personnes atteintes d'albinisme</span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#achievements" @click="smoothScroll">Distinctions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery" @click="smoothScroll">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" @click="smoothScroll">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Actions & Impact Section -->
-    <section id="impact" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="flex items-center mb-12">
-                    <div class="w-12 h-1 bg-gold mr-4"></div>
-                    <h2 class="font-heading font-bold text-3xl md:text-4xl text-midnight">Actions & Impact</h2>
-                </div>
-                
-                <!-- Grille d'actions -->
-                <div class="impact-grid">
-                    <!-- Carte 1 -->
-                    <div class="bg-light-gray rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-gold rounded-lg flex items-center justify-center mb-4">
-                            <span class="text-white text-xl">🏆</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-3">Prix Julienne Lusenge</h3>
-                        <p class="text-gray-600">Lauréate du Prix national des droits humains Julienne Lusenge, reconnaissant son engagement exceptionnel.</p>
-                    </div>
-                    
-                    <!-- Carte 2 -->
-                    <div class="bg-light-gray rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-gold rounded-lg flex items-center justify-center mb-4">
-                            <span class="text-white text-xl">🌟</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-3">Top 50 femmes qui inspirent</h3>
-                        <p class="text-gray-600">Sélectionnée parmi les 50 femmes congolaises et africaines les plus inspirantes de sa génération.</p>
-                    </div>
-                    
-                    <!-- Carte 3 -->
-                    <div class="bg-light-gray rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-gold rounded-lg flex items-center justify-center mb-4">
-                            <span class="text-white text-xl">🗣️</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-3">Plaidoyer aux Nations Unies</h3>
-                        <p class="text-gray-600">Intervention devant le Haut-Commissaire des Nations Unies aux droits de l'homme pour la protection des droits en RDC.</p>
-                    </div>
-                    
-                    <!-- Carte 4 -->
-                    <div class="bg-light-gray rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-gold rounded-lg flex items-center justify-center mb-4">
-                            <span class="text-white text-xl">👁️</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-3">Campagne de sensibilisation</h3>
-                        <p class="text-gray-600">Campagne nationale de sensibilisation à l'albinisme avec le Bureau conjoint des Nations Unies aux droits de l'homme (BCNUDH).</p>
-                    </div>
-                    
-                    <!-- Carte 5 -->
-                    <div class="bg-light-gray rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-gold rounded-lg flex items-center justify-center mb-4">
-                            <span class="text-white text-xl">🎒</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-midnight mb-3">Kits scolaires & dermatologiques</h3>
-                        <p class="text-gray-600">Distribution de kits scolaires et consultations dermatologiques pour enfants vivant avec albinisme.</p>
-                    </div>
-                </div>
-                
-                <!-- Chiffres d'impact -->
-                <div class="mt-16 bg-midnight text-white rounded-2xl p-8 md:p-12">
-                    <h3 class="font-heading font-bold text-2xl mb-8 text-center text-gold">Impact mesurable</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                        <div>
-                            <div class="text-3xl font-bold text-gold mb-2">5,000+</div>
-                            <div class="text-gray-300">Kits distribués</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-gold mb-2">100+</div>
-                            <div class="text-gray-300">Communautés touchées</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-gold mb-2">50+</div>
-                            <div class="text-gray-300">Sessions de sensibilisation</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-gold mb-2">3</div>
-                            <div class="text-gray-300">Prix nationaux</div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Hero Section -->
+        <section class="hero d-flex align-items-center">
+            <div class="container text-center text-white">
+                <h1 class="display-3 fw-bold mb-3">Blessing Kasasi Lebeka</h1>
+                <p class="lead mb-4">Activiste des droits humains en République Démocratique du Congo</p>
+                <a href="#about" class="btn btn-women btn-lg" @click="smoothScroll">Découvrir son histoire</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Collaborations & Dons Section -->
-    <section id="collaborate" class="py-16 md:py-24 bg-gradient-to-br from-midnight to-dark-red text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="flex items-center justify-center mb-8">
-                    <div class="w-12 h-1 bg-gold mr-4"></div>
-                    <h2 class="font-heading font-bold text-3xl md:text-4xl">Collaborations & Dons</h2>
-                </div>
-                
-                <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
-                    Construisons ensemble un avenir plus juste. Partenaires, sponsors et donateurs sont les bienvenus pour amplifier l'impact.
-                </p>
-                
-                <!-- Boutons d'action -->
-                <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                    <button onclick="openPartnershipForm()" class="bg-gold text-midnight px-10 py-4 rounded-full font-heading font-bold text-lg hover:bg-gold/90 transition-colors shadow-lg">
-                        Devenir partenaire
-                    </button>
-                    <button onclick="openDonationForm()" class="border-2 border-white/50 text-white px-10 py-4 rounded-full font-heading font-bold text-lg hover:border-gold hover:text-gold transition-all">
-                        Faire un don
-                    </button>
-                </div>
-                
-                <!-- Logos partenaires (placeholders) -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 opacity-80">
-                    <div class="bg-white/10 h-24 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-300">Partenaire 1</span>
+        <!-- About Section -->
+        <section id="about" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Qui est Blessing Kasasi ?</h2>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <p class="lead">
+                            Blessing Kasasi Lebeka est une activiste des droits humains en République Démocratique du Congo, engagée dès son adolescence pour la promotion des droits des filles, des femmes, des enfants, ainsi que des personnes vivant avec l'albinisme.
+                        </p>
+                        <p>
+                            À seulement 13 ans, elle a commencé à militer pour les droits des enfants, en particulier pour l'accès à l'éducation et le leadership des jeunes filles en RDC. Elle était élève en humanités littéraires au lycée Tobongisa, à Kinshasa.
+                        </p>
+                        <p>
+                            En décembre 2023, elle a été élue présidente du comité scolaire des élèves de son lycée. Elle y avait promis de promouvoir les valeurs morales, le respect du règlement intérieur et une amélioration de la qualité de l'enseignement.
+                        </p>
                     </div>
-                    <div class="bg-white/10 h-24 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-300">Partenaire 2</span>
-                    </div>
-                    <div class="bg-white/10 h-24 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-300">Partenaire 3</span>
-                    </div>
-                    <div class="bg-white/10 h-24 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-300">Partenaire 4</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-midnight text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <!-- Identité -->
-                    <div class="mb-8 md:mb-0">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
-                                <span class="text-midnight font-heading font-bold">BK</span>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-xl">Blessing Kasasi Lebeka</h3>
-                                <p class="text-gray-400">Activiste des droits humains – RDC</p>
+                    <div class="col-lg-6">
+                        <div class="card shadow">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-hands-helping fa-4x mb-3 text-women"></i>
+                                <h3>Initiatives</h3>
+                                <p>Elle est l'initiatrice du mouvement <strong>Akhetu-A-Ndando</strong> ("femme de valeurs" en langue pénde) et a organisé des actions de sensibilisation, notamment une matinée autour de l'hygiène menstruelle pour informer et distribuer des kits aux jeunes filles.</p>
+                                <a href="https://www.youtube.com/channel/UCexample" target="_blank" class="btn btn-outline-women mt-2">
+                                    <i class="fab fa-youtube me-2"></i>Blessing KBL TV
+                                </a>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Réseaux sociaux -->
-                    <div class="mb-8 md:mb-0">
-                        <h4 class="font-heading font-bold mb-4 text-center md:text-left">Connectez-vous</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
-                                <span class="text-lg">📱</span>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
-                                <span class="text-lg">🐦</span>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
-                                <span class="text-lg">📷</span>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
-                                <span class="text-lg">📹</span>
-                            </a>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="card bg-light border-0">
+                            <div class="card-body p-4">
+                                <h4 class="text-center mb-3">Lutte contre la désinformation</h4>
+                                <p class="text-center mb-0">
+                                    En juillet 2023, Blessing, alors âgée de 15 ans, a participé à Kinshasa à une formation de la MONUSCO sur la production de contenus numériques visant à lutter contre la désinformation sur les réseaux sociaux.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Copyright et mentions -->
-                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                    <p>© 2024 Blessing Kasasi – Tous droits réservés</p>
-                    <p class="mt-2 text-sm">Site conçu pour l'impact et la dignité humaine</p>
+            </div>
+        </section>
+
+        <!-- Causes Section -->
+        <section id="causes" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Ses causes phares</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm cause-card albinism-card" @mouseover="hoverEffect('albinisme')" @mouseleave="resetEffect('albinisme')">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-eye fa-3x text-albinism"></i>
+                                </div>
+                                <h3 class="card-title text-center">Défense des personnes atteintes d'albinisme</h3>
+                                <p class="card-text">
+                                    À l'occasion de la Journée internationale de sensibilisation à l'albinisme (13 juin), elle a adressé un message fort mettant en lumière les discriminations, les difficultés d'accès à l'éducation et les limitations visuelles que rencontrent les personnes atteintes d'albinisme.
+                                </p>
+                                <p :class="{'highlight-text-albinism': activeEffect === 'albinisme'}">
+                                    Elle a encouragé ces personnes à valoriser leurs talents et à ne pas se laisser abattre. En juin 2023, elle avait réclamé du gouvernement l'accès à des produits dermatologiques à bas prix, essentiels pour leur protection.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm cause-card women-card" @mouseover="hoverEffect('femmes')" @mouseleave="resetEffect('femmes')">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-female fa-3x text-women"></i>
+                                </div>
+                                <h3 class="card-title text-center">Encouragement des filles et des jeunes femmes</h3>
+                                <p class="card-text">
+                                    Le 11 octobre 2023, à l'occasion de la Journée internationale de la fille, elle a invité les filles à développer leur voir, leur juger et leur agir, pour être actrices d'un changement positif dans la société.
+                                </p>
+                                <p :class="{'highlight-text-women': activeEffect === 'femmes'}">
+                                    Elle a souligné que la liberté d'esprit doit précéder toute autonomie ou entrepreneuriat. Son engagement vise à créer une génération de femmes fortes, indépendantes et capables de transformer leur communauté.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </section>
 
-    <!-- Modals pour partenariat et dons -->
-    <div id="partnershipModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="font-heading font-bold text-2xl text-midnight">Devenir partenaire</h3>
-                <button onclick="closeModal('partnershipModal')" class="text-gray-500 hover:text-midnight">✕</button>
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Ses distinctions marquantes</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4" v-for="(achievement, index) in achievements" :key="index">
+                        <div class="card h-100 shadow achievement-card" :class="[achievement.type, {'active': activeAchievement === index}]" @click="toggleAchievement(index)">
+                            <div class="card-body text-center">
+                                <i class="fas fa-trophy fa-3x mb-3" :class="achievement.iconColor"></i>
+                                <h4 class="card-title">{{ achievement.title }}</h4>
+                                <p class="card-text" v-if="activeAchievement !== index">{{ achievement.shortDesc }}</p>
+                                <div v-if="activeAchievement === index">
+                                    <p class="card-text">{{ achievement.fullDesc }}</p>
+                                    <p class="text-muted"><small>{{ achievement.year }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="text-gray-600 mb-6">Merci de votre intérêt à soutenir notre action. Remplissez ce formulaire et nous vous contacterons dans les plus brefs délais.</p>
-            <form class="space-y-4">
-                <input type="text" placeholder="Votre nom / organisation" class="w-full p-3 border border-gray-300 rounded-lg">
-                <input type="email" placeholder="Email de contact" class="w-full p-3 border border-gray-300 rounded-lg">
-                <textarea placeholder="Votre message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
-                <button type="submit" class="w-full bg-gold text-midnight py-3 rounded-lg font-heading font-bold hover:bg-gold/90">
-                    Envoyer ma demande
-                </button>
-            </form>
-        </div>
-    </div>
-    
-    <div id="donationModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="font-heading font-bold text-2xl text-midnight">Faire un don</h3>
-                <button onclick="closeModal('donationModal')" class="text-gray-500 hover:text-midnight">✕</button>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="py-5 children-section text-white">
+            <div class="container">
+                <h2 class="text-center mb-5">En résumé</h2>
+                <div class="table-responsive">
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">Champ d'action</th>
+                                <th scope="col">Initiatives</th>
+                                <th scope="col">Reconnaissance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Droits des filles, des femmes, des enfants, des personnes vivant avec l'albinisme, et lutte contre la désinformation.</td>
+                                <td>Sensibilisation scolaire, campagne YouTube, distributions de kits hygiène, formations numériques.</td>
+                                <td>Prix national (Julienne Lusenge), liste des 100 jeunes influents, nomination aux "50 Femmes qui inspirent".</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <p class="text-gray-600 mb-6">Chaque don contribue directement à nos actions sur le terrain. Sélectionnez un montant :</p>
-            <div class="grid grid-cols-3 gap-3 mb-6">
-                <button class="p-4 border border-gray-300 rounded-lg hover:border-gold hover:bg-gold/10">$25</button>
-                <button class="p-4 border border-gray-300 rounded-lg hover:border-gold hover:bg-gold/10">$50</button>
-                <button class="p-4 border border-gray-300 rounded-lg hover:border-gold hover:bg-gold/10">$100</button>
-                <button class="p-4 border border-gray-300 rounded-lg hover:border-gold hover:bg-gold/10">$250</button>
-                <button class="p-4 border border-gray-300 rounded-lg hover:border-gold hover:bg-gold/10">$500</button>
-                <input type="number" placeholder="Autre" class="p-4 border border-gray-300 rounded-lg text-center">
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Galerie</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4" v-for="(image, index) in galleryImages" :key="index">
+                        <div class="card gallery-card shadow-sm" :class="image.type">
+                            <div class="gallery-image-placeholder" :class="image.type">
+                                <i class="fas fa-image fa-5x"></i>
+                                <p class="mt-2">Image {{ index + 1 }}</p>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text text-center">{{ image.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="w-full bg-dark-red text-white py-3 rounded-lg font-heading font-bold hover:bg-dark-red/90">
-                Faire mon don sécurisé
-            </button>
-        </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Contact</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow">
+                            <div class="card-body p-4">
+                                <form @submit.prevent="submitForm">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nom</label>
+                                        <input type="text" class="form-control" id="name" v-model="contactForm.name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" v-model="contactForm.email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control" id="message" rows="5" v-model="contactForm.message" required></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-women btn-lg">Envoyer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2023 Blessing Kasasi. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <button v-if="showScrollTop" @click="scrollToTop" class="btn btn-women scroll-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </div>
 
-    <!-- Application AngularJS -->
-    <script>
-        angular.module('blessingApp', [])
-        .controller('MainController', ['$scope', function($scope) {
-            $scope.impactStats = {
-                years: 10,
-                people: 50000,
-                causes: 3,
-                kits: 5000,
-                communities: 100,
-                sessions: 50,
-                awards: 3
-            };
-            
-            $scope.currentYear = new Date().getFullYear();
-        }]);
-        
-        // JavaScript vanilla pour les interactions
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-        
-        function openPartnershipForm() {
-            document.getElementById('partnershipModal').classList.remove('hidden');
-            document.getElementById('partnershipModal').classList.add('flex');
-        }
-        
-        function openDonationForm() {
-            document.getElementById('donationModal').classList.remove('hidden');
-            document.getElementById('donationModal').classList.add('flex');
-        }
-        
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-        
-        // Fermer les modals en cliquant à l'extérieur
-        window.addEventListener('click', function(event) {
-            const partnershipModal = document.getElementById('partnershipModal');
-            const donationModal = document.getElementById('donationModal');
-            
-            if (event.target === partnershipModal) {
-                closeModal('partnershipModal');
-            }
-            if (event.target === donationModal) {
-                closeModal('donationModal');
-            }
-        });
-        
-        // Navigation fluide
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Fermer le menu mobile si ouvert
-                    const mobileMenu = document.getElementById('mobileMenu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
-            });
-        });
-        
-        // Animation au scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll(); // Initial check
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Custom JS -->
+    <script src="interblessing.js"></script>
 </body>
 </html>
-          
