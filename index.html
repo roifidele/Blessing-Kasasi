@@ -1038,22 +1038,128 @@ Voir la présentation vidéo
 
     <!-- Modals pour partenariat et dons -->
     <div id="partnershipModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="font-heading font-bold text-2xl text-midnight">Devenir partenaire</h3>
-                <button onclick="closeModal('partnershipModal')" class="text-gray-500 hover:text-midnight">✕</button>
-            </div>
-            <p class="text-gray-600 mb-6">Merci de votre intérêt à soutenir notre action. Remplissez ce formulaire et nous vous contacterons dans les plus brefs délais.</p>
-            <form class="space-y-4">
-                <input type="text" placeholder="Votre nom / organisation" class="w-full p-3 border border-gray-300 rounded-lg">
-                <input type="email" placeholder="Email de contact" class="w-full p-3 border border-gray-300 rounded-lg">
-                <textarea placeholder="Votre message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
-                <button type="submit" class="w-full bg-gold text-midnight py-3 rounded-lg font-heading font-bold hover:bg-gold/90">
-                    Envoyer ma demande
-                </button>
-            </form>
+    <div class="bg-white rounded-2xl max-w-md w-full p-8">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="font-heading font-bold text-2xl text-midnight">Devenir partenaire</h3>
+            <button onclick="closeModal('partnershipModal')" class="text-gray-500 hover:text-midnight">✕</button>
         </div>
+        <p class="text-gray-600 mb-6">Merci de votre intérêt à soutenir notre action. Remplissez ce formulaire et vous serez redirigé vers votre messagerie pour nous envoyer un email pré-rempli.</p>
+        
+        <!-- Formulaire avec redirection mailto -->
+        <form id="partnerForm" onsubmit="sendByMail(event)" class="space-y-4">
+            <input type="text" 
+                   id="partnerName" 
+                   placeholder="Votre nom / organisation" 
+                   class="w-full p-3 border border-gray-300 rounded-lg" 
+                   required>
+            
+            <input type="email" 
+                   id="partnerEmail" 
+                   placeholder="Email de contact" 
+                   class="w-full p-3 border border-gray-300 rounded-lg" 
+                   required>
+            
+            <textarea id="partnerMessage" 
+                      placeholder="Votre message" 
+                      rows="4" 
+                      class="w-full p-3 border border-gray-300 rounded-lg"
+                      required></textarea>
+            
+            <button type="submit" 
+                    class="w-full bg-gold text-midnight py-3 rounded-lg font-heading font-bold hover:bg-gold/90">
+                Envoyer ma demande
+            </button>
+        </form>
+
+        <!-- Message de confirmation optionnel (affiché après clic) -->
+        <p id="mailConfirmation" class="text-sm text-green-600 mt-4 hidden text-center">
+            ✓ Redirection vers votre messagerie en cours...
+        </p>
     </div>
+</div>
+
+<script>
+function sendByMail(event) {
+    // Empêcher le rechargement de la page
+    event.preventDefault();
+    
+    // Récupérer les valeurs du formulaire
+    const name = document.getElementById('partnerName').value.trim();
+    const email = document.getElementById('partnerEmail').value.trim();
+    const message = document.getElementById('partnerMessage').value.trim();
+    
+    // Vérifier que tous les champs sont remplis
+    if (!name || !email || !message) {
+        alert('Veuillez remplir tous les champs');
+        return;
+    }
+    
+    // Valider le format de l'email (optionnel mais recommandé)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Veuillez entrer une adresse email valide');
+        return;
+    }
+    
+    // Construire l'objet du message
+    const subject = encodeURIComponent('Demande de partenariat - ' + name);
+    
+    // Construire le corps du message avec toutes les informations
+    const body = encodeURIComponent(
+        'Nouvelle demande de partenariat\n\n' +
+        'Nom / Organisation : ' + name + '\n' +
+        'Email de contact : ' + email + '\n' +
+        'Message :\n' + message + '\n\n' +
+        '---\n' +
+        'Cet email a été généré automatiquement depuis le formulaire de partenariat.'
+    );
+    
+    // Afficher le message de confirmation
+    document.getElementById('mailConfirmation').classList.remove('hidden');
+    
+    // Rediriger vers le client mail avec mailto
+    window.location.href = 'mailto:contact@blessingkasasi.com?subject=' + subject + '&body=' + body;
+    
+    // Optionnel : Réinitialiser le formulaire après 2 secondes
+    setTimeout(() => {
+        document.getElementById('partnerForm').reset();
+        document.getElementById('mailConfirmation').classList.add('hidden');
+        
+        // Optionnel : Fermer la modal après envoi (si vous avez la fonction)
+        if (typeof closeModal === 'function') {
+            closeModal('partnershipModal');
+        }
+    }, 3000);
+}
+
+// Alternative : Si vous voulez aussi garder la possibilité de fermeture manuelle
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+}
+</script>
+
+<!-- Style complémentaire pour les messages d'erreur si besoin -->
+<style>
+/* Animation subtile pour le message de confirmation */
+#mailConfirmation:not(.hidden) {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Style pour l'état focus des champs */
+#partnerForm input:focus, #partnerForm textarea:focus {
+    outline: none;
+    border-color: #D4AF37; /* gold color */
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+</style>
     
     <div id="donationModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-8">
@@ -1069,6 +1175,7 @@ Voir la présentation vidéo
         <div class="bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-xl mb-6 text-center">
             <p class="text-sm opacity-90 mb-2">Numéro de dépôt MPESA</p>
             <p class="font-mono font-bold text-3xl tracking-wider">0815141825</p>
+			<p class="font-mono font-bold text-3xl tracking-wider">PATRICK KASASI</p>
             <p class="text-xs opacity-75 mt-2">(Copiez ce numéro pour effectuer votre dépôt)</p>
         </div>
         
@@ -1079,7 +1186,7 @@ Voir la présentation vidéo
             <div class="flex items-start gap-3">
                 <div class="bg-green-100 text-green-700 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
                 <div>
-                    <p class="font-medium text-gray-800">Composez le *150# sur votre téléphone</p>
+                    <p class="font-medium text-gray-800">Composez le *1122# sur votre téléphone</p>
                     <p class="text-sm text-gray-600">Depuis n'importe quel numéro Vodacom</p>
                 </div>
             </div>
@@ -1104,7 +1211,7 @@ Voir la présentation vidéo
                 <div class="bg-green-100 text-green-700 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">4</div>
                 <div>
                     <p class="font-medium text-gray-800">Saisissez le montant de votre dépôt</p>
-                    <p class="text-sm text-gray-600">Minimum 500 FC</p>
+                    <p class="text-sm text-gray-600">Minimum 1 $ ou 3000 FC</p>
                 </div>
             </div>
             
