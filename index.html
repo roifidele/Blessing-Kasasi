@@ -845,47 +845,159 @@ Voir la présentation vidéo
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         <!-- Liens officiels / articles d'actualité -->
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h4 class="font-heading font-bold text-lg text-midnight mb-3 flex items-center">
-                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
-                </svg>
-                Liens officiels & articles
-            </h4>
-            <ul class="space-y-2 text-gray-600">
+<div class="bg-white p-6 rounded-xl shadow-sm">
+    <h4 class="font-heading font-bold text-lg text-midnight mb-3 flex items-center">
+        <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
+        </svg>
+        Liens officiels & articles
+    </h4>
+    
+    <!-- Compteur de liens -->
+    <div class="flex items-center justify-between mb-4">
+        <span class="text-xs bg-gold/10 text-gold px-3 py-1 rounded-full font-semibold">
+            {{links.length}} articles et publications
+        </span>
+        <span class="text-xs text-gray-500">Mis à jour régulièrement</span>
+    </div>
+    
+    <ul class="space-y-3 text-gray-600 max-h-96 overflow-y-auto pr-2 custom-scrollbar">
+        
+        <!-- Formation Assistante Personnelle 2026 -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">📋</span>
+            <span class="flex-1"><strong>Formation Assistante Personnelle</strong> – Témoignage et engagement</span>
+            <a href="https://www.facebook.com/share/p/1GDTU2hsS3/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Voir →</a>
+        </li>
 
-                <li class="flex items-start">
-                    <span class="text-gold mr-2">•</span>
-                    <span><strong>Article Actualité.cd</strong> – Interview & parcours de Blessing Kasasi</span>
-                    <a href="https://actualite.cd/index.php/2023/06/16/rdc-je-voudrais-dire-aux-filles-de-ne-jamais-se-sous-estimer-blessing-kasasi" class="text-blue-600 underline" target="_blank">Voir l’article</a>
-                </li>
+        <!-- Prix Julienne Lusenge 2ème place -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🏆</span>
+            <span class="flex-1"><strong>2ème Prix Julienne Lusenge</strong> – Annonce officielle</span>
+            <a href="https://www.facebook.com/share/p/16ohFKhiFi/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Voir →</a>
+        </li>
 
-                <li class="flex items-start">
-                    <span class="text-gold mr-2">•</span>
-                    <span><strong>Projet d’inclusion des enfants atteints d’albinisme</strong> – Blessing Kasasi à Kinshasa</span>
-                    <a href="https://actualite.cd/index.php/2026/01/10/kinshasa-blessing-kasasi-lance-un-projet-en-faveur-de-linclusion-des-enfants-atteints" class="text-blue-600 underline" target="_blank">Voir le projet</a>
-                </li>
+        <!-- Réaction au prix -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🎤</span>
+            <span class="flex-1"><strong>Réaction de Blessing</strong> après sa distinction</span>
+            <a href="https://www.facebook.com/share/p/1Kg6LtsUhV/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Voir →</a>
+        </li>
 
-                <li class="flex items-start">
-                    <span class="text-gold mr-2">•</span>
-                    <span><strong>Actualité.cd – Journée internationale de la fille</strong> – Message de Blessing Kasasi</span>
-                    <a href="https://actualite.cd/index.php/2023/10/11/journee-internationale-de-la-fille-blessing-kasasi-appelle-la-fille-developper-son-voir" class="text-blue-600 underline" target="_blank">Lire l’article</a>
-                </li>
+        <!-- Témoignage sur l'éducation -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">📚</span>
+            <span class="flex-1"><strong>Message sur l'éducation des filles</strong> – Témoignage personnel</span>
+            <a href="https://www.facebook.com/share/p/1HB93nrwEb/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Voir →</a>
+        </li>
 
-                <li class="flex items-start">
-                    <span class="text-gold mr-2">•</span>
-                    <span><strong>PourElle.info</strong> – Blessing Kasasi primée au Prix Julienne Lusenge</span>
-                    <a href="https://pourelle.info/blessing-kasasi-elue-parmi-les-laureates-de-la-1ere-edition-du-prix-national-des-droits-de-lhomme-julienne-lusenge/" class="text-blue-600 underline" target="_blank">Voir la publication</a>
-                </li>
+        <!-- 100 jeunes influents 2023 -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🌟</span>
+            <span class="flex-1"><strong>100 jeunes influents de RDC (2023)</strong> – Article Pourelle.info</span>
+            <a href="https://pourelle.info/blessing-kasasi-lebeka-primee-parmi-les-100-jeunes-les-plus-influents-de-la-rdc-en-2023/?fbclid=IwZnRzaAQDxsBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEe1JEBUaws18dd_q_kp1YTdGQ1v3SrjNvc7VwPwDA0NROZXFnkUfLf6_cXp9E_aem_DDOr799VnVhleKE5aUbzWw" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Lire →</a>
+        </li>
 
-                <li class="flex items-start">
-                    <span class="text-gold mr-2">•</span>
-                    <span><strong>Site personnel (domaine enregistré)</strong> – Blessing Kasasi, activiste des droits humains</span>
-                    <a href="http://blessingkasasi.com" class="text-blue-600 underline" target="_blank">Visiter le site</a>
-                </li>
+        <!-- Vidéo YouTube Short -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">▶️</span>
+            <span class="flex-1"><strong>YouTube Short</strong> – Message de Blessing</span>
+            <a href="https://youtube.com/shorts/l4Z6FzM67xk?si=CdtlxbWsgElYoNkA" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Regarder →</a>
+        </li>
 
-            </ul>
-        </div>
+        <!-- Vidéo 1 Facebook -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🎥</span>
+            <span class="flex-1"><strong>Vidéo Facebook</strong> – Intervention de Blessing</span>
+            <a href="https://www.facebook.com/share/v/1HR3cehQqV/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Regarder →</a>
+        </li>
+
+        <!-- Vidéo 2 Facebook -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🎥</span>
+            <span class="flex-1"><strong>Vidéo Facebook</strong> – Message aux jeunes</span>
+            <a href="https://www.facebook.com/share/v/19nwk7gFj5/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Regarder →</a>
+        </li>
+
+        <!-- Vidéo 3 Facebook -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🎥</span>
+            <span class="flex-1"><strong>Vidéo Facebook</strong> – Plaidoyer pour les droits</span>
+            <a href="https://www.facebook.com/share/v/17b8Bj2ahC/?mibextid=wwXIfr" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Regarder →</a>
+        </li>
+
+        <!-- Article Actualité.cd Interview -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors border-t border-gray-100 pt-3 mt-2">
+            <span class="text-gold mr-2 mt-1">📰</span>
+            <span class="flex-1"><strong>Article Actualité.cd</strong> – Interview & parcours</span>
+            <a href="https://actualite.cd/index.php/2023/06/16/rdc-je-voudrais-dire-aux-filles-de-ne-jamais-se-sous-estimer-blessing-kasasi" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Lire →</a>
+        </li>
+
+        <!-- Projet inclusion albinisme -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🤝</span>
+            <span class="flex-1"><strong>Projet d'inclusion</strong> – Enfants atteints d'albinisme</span>
+            <a href="https://actualite.cd/index.php/2026/01/10/kinshasa-blessing-kasasi-lance-un-projet-en-faveur-de-linclusion-des-enfants-atteints" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Voir →</a>
+        </li>
+
+        <!-- Journée internationale de la fille -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">👧</span>
+            <span class="flex-1"><strong>Journée internationale de la fille</strong> – Message de Blessing</span>
+            <a href="https://actualite.cd/index.php/2023/10/11/journee-internationale-de-la-fille-blessing-kasasi-appelle-la-fille-developper-son-voir" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Lire →</a>
+        </li>
+
+        <!-- Prix Julienne Lusenge sur PourElle.info -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors">
+            <span class="text-gold mr-2 mt-1">🏅</span>
+            <span class="flex-1"><strong>PourElle.info</strong> – Prix Julienne Lusenge</span>
+            <a href="https://pourelle.info/blessing-kasasi-elue-parmi-les-laureates-de-la-1ere-edition-du-prix-national-des-droits-de-lhomme-julienne-lusenge/" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Lire →</a>
+        </li>
+
+        <!-- Site personnel -->
+        <li class="flex items-start p-2 hover:bg-gold/5 rounded-lg transition-colors bg-gold/5">
+            <span class="text-gold mr-2 mt-1">🌐</span>
+            <span class="flex-1"><strong>Site personnel</strong> – blessingkasasi.com</span>
+            <a href="http://blessingkasasi.com" class="text-gold hover:text-midnight text-sm font-medium ml-2 flex-shrink-0" target="_blank">Visiter →</a>
+        </li>
+
+    </ul>
+    
+    <!-- Style pour la scrollbar personnalisée -->
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #C9A227;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #0F172A;
+        }
+    </style>
+</div>
+
+<!-- Ajout du compteur Angular pour les liens -->
+<script>
+    app.controller('LiensController', function($scope) {
+        $scope.links = [
+            { title: 'Formation Assistante Personnelle', url: 'https://www.facebook.com/share/p/1GDTU2hsS3/?mibextid=wwXIfr' },
+            { title: 'Prix Julienne Lusenge', url: 'https://www.facebook.com/share/p/16ohFKhiFi/?mibextid=wwXIfr' },
+            { title: 'Réaction au prix', url: 'https://www.facebook.com/share/p/1Kg6LtsUhV/?mibextid=wwXIfr' },
+            { title: 'Message éducation', url: 'https://www.facebook.com/share/p/1HB93nrwEb/?mibextid=wwXIfr' },
+            { title: '100 jeunes influents', url: 'https://pourelle.info/blessing-kasasi-lebeka-primee-parmi-les-100-jeunes-les-plus-influents-de-la-rdc-en-2023/?fbclid=IwZnRzaAQDxsBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEe1JEBUaws18dd_q_kp1YTdGQ1v3SrjNvc7VwPwDA0NROZXFnkUfLf6_cXp9E_aem_DDOr799VnVhleKE5aUbzWw' },
+            { title: 'YouTube Short', url: 'https://youtube.com/shorts/l4Z6FzM67xk?si=CdtlxbWsgElYoNkA' },
+            { title: 'Vidéo Facebook 1', url: 'https://www.facebook.com/share/v/1HR3cehQqV/?mibextid=wwXIfr' },
+            { title: 'Vidéo Facebook 2', url: 'https://www.facebook.com/share/v/19nwk7gFj5/?mibextid=wwXIfr' },
+            { title: 'Vidéo Facebook 3', url: 'https://www.facebook.com/share/v/17b8Bj2ahC/?mibextid=wwXIfr' }
+        ];
+    });
+</script>
 
     </div>
 </div>
