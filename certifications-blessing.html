@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="blessingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta SEO -->
+    <title>Certifications de Blessing Kasasi – Distinctions & Formations</title>
+    <meta name="description" content="Découvrez toutes les certifications, distinctions et formations de Blessing Kasasi : Prix Julienne Lusenge, Ambassadrice des Pays-Bas, 100 Jeunes Pages d'Espoir, et plus encore.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="5bkfav.jpg">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'midnight': '#0F172A',
+                        'gold': '#C9A227',
+                        'dark-red': '#8B0000',
+                        'off-white': '#F8F9FA',
+                        'light-gray': '#E9ECEF'
+                    },
+                    fontFamily: {
+                        'heading': ['Inter', 'system-ui', 'sans-serif'],
+                        'body': ['Merriweather', 'Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Heroicons via CDN -->
+    <script src="https://unpkg.com/heroicons@latest/"></script>
+    
+    <!-- AngularJS via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .cert-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #C9A227;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, transparent 50%, rgba(201, 162, 39, 0.1) 50%);
+            z-index: 1;
+        }
+        .timeline-dot {
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.5);
+            background-color: #C9A227;
+        }
+        .badge-un {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+        }
+        .badge-prix {
+            background: linear-gradient(135deg, #C9A227 0%, #B8860B 100%);
+        }
+    </style>
+</head>
+<body class="bg-off-white text-gray-800 font-body" ng-controller="CertificationsController">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-midnight/95 backdrop-blur-sm z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center">
+                        <span class="text-midnight font-heading font-bold text-sm">BK</span>
+                    </div>
+                    <span class="text-white font-heading font-bold text-lg">Blessing Kasasi</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#home" class="text-gray-300 hover:text-gold transition-colors">Accueil</a>
+                    <a href="index.html#biographie" class="text-gray-300 hover:text-gold transition-colors">Biographie</a>
+                    <a href="index.html#vision" class="text-gray-300 hover:text-gold transition-colors">Vision</a>
+                    <a href="index.html#impact" class="text-gray-300 hover:text-gold transition-colors">Distinctions</a>
+                    <a href="index.html#actualites" class="text-gray-300 hover:text-gold transition-colors">Actualités</a>
+                    <a href="certifications.html" class="text-gold border-b-2 border-gold pb-1 font-semibold">Certifications</a>
+                    <a href="index.html#collaborate" class="bg-gold text-midnight px-6 py-2 rounded-full font-heading font-semibold hover:bg-gold/90 transition-colors">
+                        Soutenir
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden py-4 border-t border-gray-700">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html#home" class="text-gray-300 hover:text-gold transition-colors">Accueil</a>
+                    <a href="index.html#biographie" class="text-gray-300 hover:text-gold transition-colors">Biographie</a>
+                    <a href="index.html#vision" class="text-gray-300 hover:text-gold transition-colors">Vision</a>
+                    <a href="index.html#impact" class="text-gray-300 hover:text-gold transition-colors">Distinctions</a>
+                    <a href="index.html#actualites" class="text-gray-300 hover:text-gold transition-colors">Actualités</a>
+                    <a href="certifications.html" class="text-gold font-semibold">Certifications</a>
+                    <a href="index.html#collaborate" class="bg-gold text-midnight px-6 py-2 rounded-full font-heading font-semibold text-center">
+                        Soutenir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Espace pour compenser la navigation fixe -->
+    <div class="h-16"></div>
+
+    <!-- Hero Section de la page Certifications -->
+    <section class="bg-gradient-to-r from-midnight to-midnight/90 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center bg-gold/20 text-gold px-4 py-2 rounded-full mb-6">
+                    <span class="font-heading font-semibold text-sm">PARCOURS CERTIFIÉ & DISTINCTIONS OFFICIELLES</span>
+                </div>
+                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+                    Certifications & Distinctions
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Un parcours reconnu par les Nations Unies, le gouvernement congolais et de nombreuses organisations internationales
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Introduction -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="flex items-center justify-center mb-8">
+                    <div class="w-12 h-1 bg-gold mr-4"></div>
+                    <span class="text-midnight font-heading font-semibold">EXCELLENCE & ENGAGEMENT</span>
+                    <div class="w-12 h-1 bg-gold ml-4"></div>
+                </div>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    Les certifications et distinctions de Blessing Kasasi témoignent de son engagement exceptionnel 
+                    pour les droits humains et le leadership féminin en République Démocratique du Congo. 
+                    Chaque reconnaissance reflète son dévouement et l'impact de ses actions sur sa communauté.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques rapides -->
+    <section class="py-8 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                    <div class="text-3xl font-bold text-gold mb-1">6</div>
+                    <div class="text-sm text-gray-600">Certifications</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                    <div class="text-3xl font-bold text-gold mb-1">4</div>
+                    <div class="text-sm text-gray-600">Organisations UN</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                    <div class="text-3xl font-bold text-gold mb-1">2022-25</div>
+                    <div class="text-sm text-gray-600">Parcours certifié</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                    <div class="text-3xl font-bold text-gold mb-1">3</div>
+                    <div class="text-sm text-gray-600">Prix majeurs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Distinctions Majeures (Prix) -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="inline-flex items-center justify-center space-x-3 mb-6">
+                    <div class="w-10 h-1 bg-gold"></div>
+                    <div class="w-4 h-4 bg-gold rounded-full"></div>
+                    <div class="w-10 h-1 bg-gold"></div>
+                </div>
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-midnight mb-6">
+                    Distinctions Majeures
+                </h2>
+            </div>
+            
+            <!-- Grille des distinctions majeures -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Prix Julienne Lusenge -->
+                <div class="cert-card bg-gradient-to-br from-midnight to-midnight/90 text-white rounded-xl p-8 shadow-xl">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🏆</span>
+                        </div>
+                        <span class="bg-gold text-midnight text-xs font-bold px-3 py-1 rounded-full">2024</span>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">Prix Julienne Lusenge</h3>
+                    <p class="text-gray-300 mb-4">2ème Prix National des Droits de l'Homme</p>
+                    <div class="border-t border-white/10 pt-4 mt-4">
+                        <p class="text-sm text-gray-400 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8z"></path>
+                            </svg>
+                            Ministère des Droits Humains & Nations Unies
+                        </p>
+                        <p class="text-xs text-gray-500 mt-2">Signé par la Ministre Chantal Chambu Mwavita et Patrice Vahard (BCNUDH)</p>
+                    </div>
+                </div>
+                
+                <!-- 100 Jeunes Pages d'Espoir -->
+                <div class="cert-card bg-gradient-to-br from-gold to-yellow-600 text-midnight rounded-xl p-8 shadow-xl">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🌟</span>
+                        </div>
+                        <span class="bg-midnight text-white text-xs font-bold px-3 py-1 rounded-full">2023</span>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">100 Jeunes Pages d'Espoir</h3>
+                    <p class="text-midnight/80 mb-4">Prix Jeune Espoir - 4ème Édition</p>
+                    <div class="border-t border-midnight/20 pt-4 mt-4">
+                        <p class="text-sm text-midnight/70 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8z"></path>
+                            </svg>
+                            Benjamin Buyemere, Co-fondateur
+                        </p>
+                        <p class="text-xs text-midnight/60 mt-2">Pour des actions contribuant à l'agenda 2030 en RDC</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Certifications et Formations -->
+    <section class="py-16 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="inline-flex items-center justify-center space-x-3 mb-6">
+                    <div class="w-10 h-1 bg-gold"></div>
+                    <div class="w-4 h-4 bg-gold rounded-full"></div>
+                    <div class="w-10 h-1 bg-gold"></div>
+                </div>
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-midnight mb-6">
+                    Formations Certifiantes
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Un parcours de formation continue avec des organisations internationales et nationales
+                </p>
+            </div>
+            
+            <!-- Grille des certifications -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                
+                <!-- Ambassador for a Day 2024 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cert-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">🇳🇱</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold">2024</span>
+                            <h3 class="font-heading font-bold text-midnight">Ambassador for a Day</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Netherlands Young Ambassador - Ambassade des Pays-Bas</p>
+                    <p class="text-xs text-gray-500">Signé par Alyson King, UK Ambassador</p>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <span class="inline-block bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Diplomatique</span>
+                    </div>
+                </div>
+                
+                <!-- Camp des jeunes leaders 2025 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cert-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">👥</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold">2025</span>
+                            <h3 class="font-heading font-bold text-midnight">Camp des jeunes leaders</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">1er - 30 août 2025 • Mentorat personnalisé et masterclasses</p>
+                    <p class="text-xs text-gray-500">Bénédicte Kuvuna (KF) & Charis Basoko (Pona Congo)</p>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <span class="inline-block bg-purple-50 text-purple-700 text-xs px-2 py-1 rounded">Leadership</span>
+                    </div>
+                </div>
+                
+                <!-- Académie Leadership Féminin - Santé Reproductive -->
+                <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cert-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">🌸</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold">2022</span>
+                            <h3 class="font-heading font-bold text-midnight">Santé de la Reproduction</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">AfriYAN RDC avec UNFPA RDC • 03-06 janvier 2022</p>
+                    <p class="text-xs text-gray-500">Académie du Leadership Féminin en Milieu Scolaire</p>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <span class="inline-block bg-pink-50 text-pink-700 text-xs px-2 py-1 rounded">UNFPA</span>
+                    </div>
+                </div>
+                
+                <!-- Immersions professionnelles -->
+                <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cert-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">💼</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold">2023</span>
+                            <h3 class="font-heading font-bold text-midnight">Immersions professionnelles</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Académie de Leadership Féminin - AfriYAN RDC</p>
+                    <p class="text-xs text-gray-500">Brevet de participation aux séances d'immersion</p>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <span class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded">Professionnel</span>
+                    </div>
+                </div>
+                
+                <!-- Formation MONUSCO -->
+                <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cert-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-800 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">📱</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold">2023</span>
+                            <h3 class="font-heading font-bold text-midnight">Lutte contre la désinformation</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">MONUSCO - Production de contenus numériques</p>
+                    <p class="text-xs text-gray-500">Formation certifiante</p>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <span class="inline-block bg-blue-800 text-white text-xs px-2 py-1 rounded">ONU</span>
+                    </div>
+                </div>
+                
+                <!-- Assistante Personnelle -->
+                <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cert-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">📋</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gold font-semibold">2026</span>
+                            <h3 class="font-heading font-bold text-midnight">Assistanat Personnel</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Marguerita Academia - "Nouvelle année, une carrière relookée"</p>
+                    <p class="text-xs text-gray-500">Formation professionnelle certifiante</p>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <span class="inline-block bg-gold/10 text-gold text-xs px-2 py-1 rounded">Certification</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Timeline détaillée -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="font-heading font-bold text-2xl text-midnight mb-10 text-center">Parcours chronologique</h3>
+                
+                <!-- Timeline -->
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-gold before:to-gold/20">
+                    
+                    <!-- 2026 -->
+                    <div class="timeline-item relative flex items-start justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center md:w-1/2 md:odd:pr-12">
+                            <div class="timeline-dot w-5 h-5 bg-gold rounded-full absolute left-0 md:relative md:left-auto z-10"></div>
+                            <div class="ml-8 md:ml-0 bg-light-gray p-6 rounded-xl shadow-sm w-full">
+                                <span class="text-sm font-bold text-gold">2026</span>
+                                <h4 class="font-heading font-bold text-lg text-midnight">Assistanat Personnel</h4>
+                                <p class="text-gray-600">Marguerita Academia · Formation professionnelle</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025 -->
+                    <div class="timeline-item relative flex items-start justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center md:w-1/2 md:odd:pr-12">
+                            <div class="timeline-dot w-5 h-5 bg-gold rounded-full absolute left-0 md:relative md:left-auto z-10"></div>
+                            <div class="ml-8 md:ml-0 bg-light-gray p-6 rounded-xl shadow-sm w-full">
+                                <span class="text-sm font-bold text-gold">2025</span>
+                                <h4 class="font-heading font-bold text-lg text-midnight">Camp des jeunes leaders</h4>
+                                <p class="text-gray-600">KF & Pona Congo · Mentorat et masterclasses</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2024 -->
+                    <div class="timeline-item relative flex items-start justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center md:w-1/2 md:odd:pr-12">
+                            <div class="timeline-dot w-5 h-5 bg-gold rounded-full absolute left-0 md:relative md:left-auto z-10"></div>
+                            <div class="ml-8 md:ml-0 bg-light-gray p-6 rounded-xl shadow-sm w-full">
+                                <span class="text-sm font-bold text-gold">2024</span>
+                                <h4 class="font-heading font-bold text-lg text-midnight">Prix Julienne Lusenge</h4>
+                                <p class="text-gray-600">2ème Prix National des Droits de l'Homme</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2023 (multiple) -->
+                    <div class="timeline-item relative flex items-start justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center md:w-1/2 md:odd:pr-12">
+                            <div class="timeline-dot w-5 h-5 bg-gold rounded-full absolute left-0 md:relative md:left-auto z-10"></div>
+                            <div class="ml-8 md:ml-0 bg-light-gray p-6 rounded-xl shadow-sm w-full">
+                                <span class="text-sm font-bold text-gold">2023</span>
+                                <h4 class="font-heading font-bold text-lg text-midnight">Multiples reconnaissances</h4>
+                                <ul class="text-sm text-gray-600 list-disc list-inside">
+                                    <li>100 Jeunes Pages d'Espoir</li>
+                                    <li>Formation MONUSCO</li>
+                                    <li>Immersions professionnelles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2022 -->
+                    <div class="timeline-item relative flex items-start justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center md:w-1/2 md:odd:pr-12">
+                            <div class="timeline-dot w-5 h-5 bg-gold rounded-full absolute left-0 md:relative md:left-auto z-10"></div>
+                            <div class="ml-8 md:ml-0 bg-light-gray p-6 rounded-xl shadow-sm w-full">
+                                <span class="text-sm font-bold text-gold">2022</span>
+                                <h4 class="font-heading font-bold text-lg text-midnight">Formation UNFPA</h4>
+                                <p class="text-gray-600">Santé de la Reproduction · AfriYAN RDC</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Organismes certificateurs -->
+    <section class="py-16 bg-midnight text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h3 class="font-heading font-bold text-2xl mb-6">Organismes certificateurs</h3>
+                <p class="text-gray-300">Des institutions nationales et internationales qui ont reconnu l'engagement de Blessing Kasasi</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/10 p-4 rounded-xl text-center">
+                    <span class="text-3xl mb-2 block">🇺🇳</span>
+                    <p class="font-heading font-semibold text-sm">Nations Unies</p>
+                    <p class="text-xs text-gray-400">UNFPA, MONUSCO, BCNUDH</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl text-center">
+                    <span class="text-3xl mb-2 block">🇳🇱</span>
+                    <p class="font-heading font-semibold text-sm">Ambassade</p>
+                    <p class="text-xs text-gray-400">Pays-Bas / Royaume-Uni</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl text-center">
+                    <span class="text-3xl mb-2 block">🇨🇩</span>
+                    <p class="font-heading font-semibold text-sm">Ministère</p>
+                    <p class="text-xs text-gray-400">Droits Humains RDC</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl text-center">
+                    <span class="text-3xl mb-2 block">🎓</span>
+                    <p class="font-heading font-semibold text-sm">AfriYAN RDC</p>
+                    <p class="text-xs text-gray-400">Leadership Féminin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Call-to-Action -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="font-heading font-bold text-2xl text-midnight mb-6">
+                    Un parcours qui inspire
+                </h3>
+                <p class="text-lg text-gray-700 mb-8">
+                    Chaque certification est une étape de plus dans l'engagement de Blessing Kasasi pour défendre les droits humains et promouvoir le leadership féminin en RDC.
+                </p>
+                <a href="index.html#collaborate" class="inline-block bg-gold text-midnight px-8 py-4 rounded-full font-heading font-bold hover:bg-gold/90 transition-colors shadow-lg">
+                    Soutenir son engagement
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer simplifié -->
+    <footer class="bg-midnight text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-8 md:mb-0">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
+                                <span class="text-midnight font-heading font-bold">BK</span>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl">Blessing Kasasi Lebeka</h3>
+                                <p class="text-gray-400">Activiste des droits humains – RDC</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
+                            <span class="text-lg">📱</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
+                            <span class="text-lg">🐦</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors">
+                            <span class="text-lg">📷</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                    <p>© 2026 Blessing Kasasi – Tous droits réservés</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        var app = angular.module('blessingApp', []);
+        
+        app.controller('CertificationsController', ['$scope', function($scope) {
+            $scope.certifications = [
+                {
+                    title: 'Prix Julienne Lusenge',
+                    year: '2024',
+                    organization: 'Ministère Droits Humains & Nations Unies',
+                    description: '2ème Prix National des Droits de l\'Homme'
+                },
+                {
+                    title: '100 Jeunes Pages d\'Espoir',
+                    year: '2023',
+                    organization: 'Prix Jeune Espoir',
+                    description: '4ème Édition'
+                },
+                {
+                    title: 'Ambassador for a Day',
+                    year: '2024',
+                    organization: 'Ambassade des Pays-Bas',
+                    description: 'Netherlands Young Ambassador'
+                },
+                {
+                    title: 'Camp des jeunes leaders',
+                    year: '2025',
+                    organization: 'KF & Pona Congo',
+                    description: 'Mentorat et masterclasses'
+                },
+                {
+                    title: 'Santé de la Reproduction',
+                    year: '2022',
+                    organization: 'AfriYAN RDC / UNFPA',
+                    description: 'Académie Leadership Féminin'
+                },
+                {
+                    title: 'Assistanat Personnel',
+                    year: '2026',
+                    organization: 'Marguerita Academia',
+                    description: 'Formation professionnelle'
+                }
+            ];
+        }]);
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
